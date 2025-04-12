@@ -1,41 +1,29 @@
-import { React, useState } from 'react';
-
-import { Container, Flex, HStack, Text, Button, Icon } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
-import { FaPlusSquare, FaMoon, FaSun } from 'react-icons/fa';
+import { BsCart4, BsFillMoonStarsFill, BsFillSunFill, BsFillPlusSquareFill } from 'react-icons/bs';
+import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 
 const Navbar = () => {
-  const { colorMode, setColorMode } = useState('light');
-  
-  function handleToggleColorMode() {
-    setColorMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-  }
+  const [darkMode, setDarkMode] = useState(false);
 
+  function toggleDarkMode() {
+    setDarkMode(!darkMode);
+  }
+  
   return (
-    <Container maxW={'1140px'} px={4}>
-      <Flex h={16} alignItems={'center'} justifyContent={'space-between'} flexDir={{base: 'column', sm: 'row'}}>
-        <Text fontSize={{base: '22', sm: '28'}} fontWeight={'bold'} textTransform={'uppercase'} textAlign={'center'} bgGradient={'linear(to-r, cyan.400, blue.500)'} bgClip={'text'}>
-          <Link to={'/'}>Product Store</Link>
-        </Text>
-        <HStack spacing={2} alignItems={'center'}>
-          <Link to={'/create'}>
-            <Button>
-              <Icon fontSize={20}>
-                <FaPlusSquare />
-              </Icon>
-            </Button>
-          </Link>
-          <Button onClick={handleToggleColorMode}>
-            {colorMode === 'light' ? (<Icon fontSize={20} >
-              <FaSun />
-            </Icon>) : (<Icon fontSize={20}>
-              <FaMoon />
-            </Icon>)}
-          </Button>
-        </HStack>
-      </Flex>
-    </Container>
+    <nav style={{backgroundColor: darkMode ? '#1a1a1a' : '#00ccff', paddingLeft: '4rem', paddingRight: '4rem', paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+      <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', color: darkMode ? '#00ccff' : '#1a1a1a', fontWeight: 'bold'}}>
+        <NavLink to='/' style={{fontSize: '1.5rem', color: darkMode ? '#00ccff' : '#1a1a1a', textDecoration: 'none'}}>Product Store</NavLink>
+        <BsCart4 style={{fontSize: '1.65rem'}} />
+      </div>
+      <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
+        <NavLink to='/create'><BsFillPlusSquareFill style={{fontSize: '1.65rem', color: darkMode ? '#00ccff' : '#1a1a1a'}} /></NavLink>
+        <button onClick={toggleDarkMode} style={{fontSize: '1rem', outline: 'none', border: 'none', backgroundColor: darkMode ? '#1a1a1a' : '#00ccff' }}>
+          {darkMode ? <BsFillMoonStarsFill style={{fontSize: '1.5rem', marginTop: 'auto', marginBottom: 'auto', color: darkMode ? '#00ccff' : '#1a1a1a'}} /> : <BsFillSunFill style={{fontSize: '1.5rem', marginTop: 'auto', marginBottom: 'auto', color: darkMode ? '#ffffff' : '#1a1a1a'}} />}
+        </button>
+      </div>
+    </nav>
   );
 };
+
 
 export default Navbar;
