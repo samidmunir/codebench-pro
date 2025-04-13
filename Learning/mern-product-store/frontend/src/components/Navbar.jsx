@@ -10,7 +10,7 @@ const Navbar = () => {
   }
   
   return (
-    <nav style={{backgroundColor: darkMode ? '#1a1a1a' : '#00ccff', paddingLeft: '4rem', paddingRight: '4rem', paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+    <nav style={{backgroundColor: darkMode ? '#1a1a1a' : '#00ccff', paddingLeft: '4rem', paddingRight: '4rem', paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 0 10px rgb(0, 0, 0)'}}>
       <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', color: darkMode ? '#00ccff' : '#1a1a1a', fontWeight: 'bold'}}>
         <NavLink to='/' style={{fontSize: '1.5rem', color: darkMode ? '#00ccff' : '#1a1a1a', textDecoration: 'none'}}>Product Store</NavLink>
         <BsCart4 style={{fontSize: '1.65rem'}} />
